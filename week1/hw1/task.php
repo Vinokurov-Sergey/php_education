@@ -40,12 +40,19 @@ if (($age >= 18) && ($age <= 65)) {
 
 echo '<br><br><b>Задание №4 </b><br><br>';
 
-$day = 6;
+$day = mt_rand(0,10);
+echo 'День: ' . $day . ' - ';
+
 switch ($day) {
-	case ($day >= 1 && $day <= 5):
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
 		echo 'Это рабочий день';
 		break;
-	case ($day === 6 || $day === 7):
+	case 6:
+	case 7:
 		echo 'Это выходной день';
 		break;
 	default:
