@@ -1,0 +1,16 @@
+{
+  "name": "vendor_name/week4",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Сергей",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "swiftmailer/swiftmailer": "^6.0",
+    "intervention/image": "^2.7"
+  }
+}
