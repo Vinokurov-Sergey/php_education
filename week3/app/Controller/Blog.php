@@ -65,4 +65,9 @@ class Blog extends AbstractController
     {
 
     }
+
+    public function twig()
+    {
+        return $this->view->TwigRender('twigTest.twig', ['data' => 'Hello Twig!']);
+    }
 }
