@@ -1,0 +1,21 @@
+<?php ?>
+<?php
+/** @var \App\Model\User $user */
+$user = $this->data['user'];
+if(!$user): ?>
+    Зарегистрироваться:<br>
+    <form action="/login/register" method="post">
+        Имя: <input type="text" name="name"><br>
+        Пароль: <input type="password" name="password"><br>
+        Проверка пароля: <input type="password" name="password2"><br>
+        Email: <input type="text" name="email"><br>
+        <input type="submit" value="Зарегистрироваться">
+    </form>
+    Войти:<br>
+    <form action="/login/auth" method="post">
+        Email: <input type="text" name="email"><br>
+        Пароль: <input type="password" name="password"><br>
+        <input type="submit" value="Войти">
+    </form>
+
+<? endif; ?>

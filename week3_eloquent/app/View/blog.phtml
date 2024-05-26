@@ -1,0 +1,42 @@
+<style>
+    .message {border: 1px solid black; width: 300px; min-height: 50px; max-height: 250px; margin-top: 10px; position: relative}
+    .author {font-weight: bold; margin-right: 10px; margin-bottom: 20px}
+    .date {font-style: italic}
+    .text {padding-top: 10px; padding-bottom: 10px}
+    .add_message {margin-top: 50px}
+    .admin {width: 60px; position: absolute; right: -65px;}
+</style>
+
+Список сообщений:<br>
+<?php /** @var $message \App\Model\Message */ ?>
+<?php $user = $this->data['user']; ?>
+<?php if($messages = $this->data['messages']): ?>
+    <?php foreach($messages as $message): ?>
+        <div class="message">
+            <?php if($user->isAdmin()): ?>
+                <div class="admin">
+                    <a href="/admin/deleteMessage/?id=<?=$message->getId() ?>">Удалить</a>
+                </div>
+            <?php endif; ?>
+            <? if($author = $message->getAuthor()): ?>
+                <span class="author"><?=htmlspecialchars($author->getName()); ?></span>
+            <?php else: ?>
+                <span class="author">Сообщение удаленного пользователя</span>
+            <?php endif; ?>
+            <span class="date"><?= $message->getCreatedAt(); ?></span>
+            <div class="text"><?= htmlspecialchars(nl2br($message->getText())); ?></div>
+            <? if($message->getImage()): ?>
+                <div><img src="/images/<?=$message->getImage(); ?>"</div>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    Сообщений нет
+<?php endif; ?>
+<br><br><div class="add_message">Добавить сообщение:</div><br>
+<form enctype="multipart/form-data" action="/blog/addMessage" method="post">
+    <textarea style="width: 300px; height: 150px;" type="text" name="text"></textarea><br><br>
+    Загрузить изображение: <input type="file" name="image"><br><br>
+    <input type="submit" value="Отправить">
+</form>
+
